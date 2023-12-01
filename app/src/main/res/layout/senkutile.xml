@@ -8,8 +8,8 @@
     <TextView
         android:id="@+id/tile"
         android:layout_width="36dp"
-        android:layout_height="46dp"
+        android:layout_height="36dp"
         android:gravity="center"
         android:textSize="24sp"
-        android:background="@drawable/borde_redondeado"/>
+        android:layout_margin="5sp"/>
 </LinearLayout>

@@ -7,7 +7,7 @@ import android.widget.GridView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SenkuTile[] senkuTiles = new SenkuTile[49];
+    private SenkuTile[][] senkuTiles = new SenkuTile[7][7];
     private GridView tileList;
     private Adaptador tileAdapter;
 
@@ -17,18 +17,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tileList = findViewById(R.id.senkuTileList);
 
-        for (int i = 0; i < senkuTiles.length; i++){
+        SenkuTile[] senkuTilesArray = matrizToArray(senkuTiles);
+        for (int i = 0; i < senkuTilesArray.length; i++){
 
             if (checkCorner(i)){
-                senkuTiles[i] = new SenkuTile(false, true);
+                senkuTilesArray[i] = new SenkuTile(false, true);
             } else {
-                senkuTiles[i] = new SenkuTile();
+                if (i == 24){
+                    senkuTilesArray[i] = new SenkuTile(true, false);
+                } else {
+                    senkuTilesArray[i] = new SenkuTile();
+                }
             }
         }
 
-        tileAdapter = new Adaptador(this, senkuTiles);
+        tileAdapter = new Adaptador(this, senkuTilesArray);
         tileList.setAdapter(tileAdapter);
+    }
 
+    private void adapterUpdate(SenkuTile[] tilesArray) {
+        this.tileAdapter.setSenkuTiles(tilesArray);
+        this.tileAdapter.notifyDataSetChanged();
     }
 
     private boolean checkCorner(int j){
@@ -39,5 +48,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    private SenkuTile[] matrizToArray (SenkuTile[][] senkuTiles) {
+        SenkuTile[] tilesArray = new SenkuTile[49];
+        int arrayIndex = 0;
+
+        for (int i = 0; i < senkuTiles.length; i++){
+            for (int j = 0; j < senkuTiles[i].length; j ++){
+                tilesArray[arrayIndex] = senkuTiles[i][j];
+                arrayIndex = arrayIndex + 1;
+            }
+        }
+
+        return tilesArray;
     }
 }

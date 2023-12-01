@@ -4,6 +4,8 @@ public class SenkuTile {
 
     private boolean empty = false;
     private boolean corner = false;
+    private boolean possible = false;
+    private boolean selected = false;
 
     public SenkuTile(){
 
@@ -30,5 +32,21 @@ public class SenkuTile {
 
     public void setCorner(boolean corner) {
         this.corner = corner;
+    }
+
+    public boolean isPossible() {
+        return possible;
+    }
+
+    public void setPossible(boolean possible) {
+        this.possible = possible;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
