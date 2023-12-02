@@ -45,9 +45,18 @@ public class Adaptador extends ArrayAdapter<Object> {
         if(senkuTiles[position].isCorner()) {
 
             holder.senkuTiles.setVisibility(View.INVISIBLE);
-        } else if(senkuTiles[position].isEmpty()) {
+        } else if(senkuTiles[position].isEmpty() && !senkuTiles[position].isPossible()) {
 
             gd.setColor(Color.GRAY);
+            holder.senkuTiles.setBackground(gd);
+        } else if(senkuTiles[position].isSelected()) {
+
+            gd.setColor(Color.BLUE);
+            gd.setStroke(10, Color.GREEN);
+            holder.senkuTiles.setBackground(gd);
+        } else if(senkuTiles[position].isPossible()) {
+
+            gd.setColor(Color.GREEN);
             holder.senkuTiles.setBackground(gd);
         } else {
 
